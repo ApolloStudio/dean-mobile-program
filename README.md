@@ -6,12 +6,12 @@ A new Flutter project.
 
 Write in your console: 
 
-###Android:
+### Android:
 ```
 flutter build apk --release
 ```
 
-###iOS:
+### iOS:
 ```
 flutter build ios --release
 ```
