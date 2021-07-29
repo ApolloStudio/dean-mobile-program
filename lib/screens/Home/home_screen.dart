@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:dean/screens/Home/widgets/video_button.dart';
+import 'package:dean/screens/Home/widgets/app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -22,17 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.title),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: <Color>[Colors.cyan, Colors.blue])),
-          ),
-        ),
+        appBar: AppBarWithNotificationsButton(title: widget.title),
         drawer: Drawer(),
         body: this.getBody(),
         bottomNavigationBar: BottomNavigationBar(

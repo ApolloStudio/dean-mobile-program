@@ -2,6 +2,8 @@ import 'dart:core';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:dean/screens/InformationAboutTheGesture/widgets/radiant_gradiant_mask.dart';
+import 'package:dean/screens/InformationAboutTheGesture/widgets/app_bar.dart';
 
 class InformationAboutTheGestureScreen extends StatefulWidget {
   InformationAboutTheGestureScreen({Key? key, required this.title})
@@ -17,7 +19,7 @@ class _InformationAboutTheGestureScreenState
     extends State<InformationAboutTheGestureScreen> {
   _InformationAboutTheGestureScreenState(String title);
 
-  bool _isFavorited = false;
+  bool _isFavorited = true;
 
   void _onPressedIconButton() {
     setState(() {
@@ -39,22 +41,22 @@ class _InformationAboutTheGestureScreenState
                 padding: const EdgeInsets.only(bottom: 8),
                 child: const Text(
                   'Test name article',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
               ),
               Text(
                 'Test...',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey[500]),
+                style: TextStyle(color: Colors.grey[500], fontSize: 18),
               )
             ],
           )),
           IconButton(
               onPressed: _onPressedIconButton,
-              icon: (_isFavorited
-                  ? Icon(Icons.favorite)
-                  : Icon(Icons.favorite_border)),
+              icon: RadiantGradientMask(
+                child: (_isFavorited
+                    ? Icon(Icons.favorite_border)
+                    : Icon(Icons.favorite)),
+              ),
               color: Colors.cyan[500])
         ],
       ),
@@ -65,22 +67,13 @@ class _InformationAboutTheGestureScreenState
       child: Text(
         'Text....',
         textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 16),
         softWrap: true,
       ),
     );
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.title),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: <Color>[Colors.cyan, Colors.blue])),
-        ),
-      ),
+      appBar: AppBarWithBackButton(title: widget.title),
       drawer: Drawer(),
       body: ListView(
         children: [
